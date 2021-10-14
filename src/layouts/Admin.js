@@ -22,7 +22,7 @@ function Dashboard(props) {
 
   React.useEffect(() => {
     if (!user) {
-      props.history.push('/login')
+      props.history.push('/')
     }
   }, [user, props.history])
 
