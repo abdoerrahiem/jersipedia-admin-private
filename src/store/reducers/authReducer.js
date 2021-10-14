@@ -34,15 +34,13 @@ export default function authReducer(state = initialState, action) {
       }
     case LOGOUT:
       return {
+        user: null,
         loginLoading: false,
         loginSuccess: null,
         loginFail: null,
-
         checkLoginLoading: false,
         checkLoginSuccess: null,
         checkLoginFail: null,
-
-        user: null,
       }
     default:
       return state

@@ -50,7 +50,7 @@ export const login = (email, password) => (dispatch) => {
     })
 }
 
-export const checkLogin = (history) => (dispatch) => {
+export const checkLogin = () => (dispatch) => {
   dispatchLoading(dispatch, CHECK_LOGIN)
 
   if (window.localStorage.getItem('user')) {
@@ -65,12 +65,10 @@ export const checkLogin = (history) => (dispatch) => {
           } else {
             dispatchError(dispatch, CHECK_LOGIN, 'You are not an admin')
             swal('Error', 'You are not an admin', 'error')
-            history.push('/login')
           }
         } else {
           dispatchError(dispatch, CHECK_LOGIN, 'You are not an admin')
           swal('Error', 'You are not an admin', 'error')
-          history.push('/login')
         }
       },
       {
@@ -79,16 +77,16 @@ export const checkLogin = (history) => (dispatch) => {
     )
   } else {
     dispatchError(dispatch, CHECK_LOGIN, 'Please login first')
-    history.push('/login')
   }
 }
 
 export const logout = () => (dispatch) => {
+  window.localStorage.removeItem('user')
+
   dispatchLoading(dispatch, LOGOUT)
 
   authSignOut(auth)
     .then((res) => {
-      window.localStorage.removeItem('user')
       dispatchSuccess(dispatch, LOGOUT, res)
     })
     .catch((error) => {

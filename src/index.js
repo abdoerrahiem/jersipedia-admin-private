@@ -10,10 +10,7 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css'
 
 import AdminLayout from 'layouts/Admin.js'
 import { Login, Success, Fail, Unfinish } from './views'
-import { checkLogin } from 'store/actions'
 import store from './store'
-
-store.dispatch(checkLogin())
 
 ReactDOM.render(
   <Provider store={store}>

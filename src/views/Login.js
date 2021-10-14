@@ -14,7 +14,7 @@ import {
 } from 'reactstrap'
 import swal from 'sweetalert'
 
-import { login } from '../store/actions'
+import { login, checkLogin } from '../store/actions'
 import Logo from '../assets/img/logoUtama.svg'
 
 export default function Login({ history }) {
@@ -23,6 +23,10 @@ export default function Login({ history }) {
 
   const dispatch = useDispatch()
   const { loginLoading, user } = useSelector((state) => state.authReducer)
+
+  useEffect(() => {
+    dispatch(checkLogin())
+  }, [dispatch])
 
   useEffect(() => {
     if (user) {
@@ -39,6 +43,8 @@ export default function Login({ history }) {
       swal('Error', 'Email and password are required', 'error')
     }
   }
+
+  console.log(user)
 
   return (
     <Row className='justify-content-center mt-5'>
