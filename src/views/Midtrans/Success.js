@@ -36,7 +36,7 @@ export default function Success() {
     }
   }, [dispatch])
 
-  const toHistory = () => window.ReactNativeWebview.postMessage('Success')
+  const toHistory = () => window.ReactNativeWebView.postMessage('Success')
 
   return (
     <Row className='justify-content-center mt-5'>
