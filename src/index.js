@@ -7,7 +7,6 @@ import {
   Redirect,
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createBrowserHistory } from 'history'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'assets/scss/paper-dashboard.scss?v=1.3.0'
@@ -16,16 +15,16 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css'
 
 import AdminLayout from 'layouts/Admin.js'
 import { Login, Success, Fail, Unfinish } from './views'
-import { checkLogin } from 'store/actions'
+// import { checkLogin } from 'store/actions'
 import store from './store'
 
-const history = createBrowserHistory()
+// const history = createBrowserHistory()
 
-store.dispatch(checkLogin())
+// store.dispatch(checkLogin())
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router>
       <Switch>
         <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
         <Route path='/login' component={Login} exact />
