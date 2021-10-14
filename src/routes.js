@@ -1,0 +1,83 @@
+import {
+  Dashboard,
+  Leagues,
+  AddLeague,
+  EditLeague,
+  Jerseys,
+  AddJersey,
+  EditJersey,
+  Orders,
+  Icons,
+} from './views'
+
+const routes = [
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    icon: 'nc-icon nc-bank',
+    component: Dashboard,
+    layout: '/admin',
+    sidebar: true,
+  },
+  {
+    path: '/leagues',
+    name: 'Master League',
+    icon: 'nc-icon nc-world-2',
+    component: Leagues,
+    layout: '/admin',
+    sidebar: true,
+  },
+  {
+    path: '/leagues/add',
+    name: 'Add League',
+    component: AddLeague,
+    layout: '/admin',
+    sidebar: false,
+  },
+  {
+    path: '/leagues/edit/:id',
+    name: 'Edit Liga',
+    component: EditLeague,
+    layout: '/admin',
+    sidebar: false,
+  },
+  {
+    path: '/jerseys',
+    name: 'Master Jersey',
+    icon: 'nc-icon nc-cart-simple',
+    component: Jerseys,
+    layout: '/admin',
+    sidebar: true,
+  },
+  {
+    path: '/jerseys/add',
+    name: 'Add Jersey',
+    component: AddJersey,
+    layout: '/admin',
+    sidebar: false,
+  },
+  {
+    path: '/jerseys/edit/:id',
+    name: 'Edit Jersey',
+    component: EditJersey,
+    layout: '/admin',
+    sidebar: false,
+  },
+  {
+    path: '/orders',
+    name: 'Master Order',
+    icon: 'nc-icon nc-cart-simple',
+    component: Orders,
+    layout: '/admin',
+    sidebar: true,
+  },
+  {
+    path: '/icons',
+    name: 'Icons',
+    icon: 'nc-icon nc-diamond',
+    component: Icons,
+    layout: '/admin',
+    sidebar: true,
+  },
+]
+export default routes
