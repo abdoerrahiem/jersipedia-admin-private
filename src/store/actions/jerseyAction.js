@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   GET_JERSEYS,
   GET_JERSEY,
@@ -104,7 +105,34 @@ export const addJersey = (data) => (dispatch) => {
   updates[`/jerseys/${key}`] = newData
 
   databaseUpdate(databaseRef(database), updates)
-    .then((data) => dispatchSuccess(dispatch, ADD_JERSEY, data ?? []))
+    .then(async (res) => {
+      dispatchSuccess(dispatch, ADD_JERSEY, res ?? [])
+
+      const { data } = await axios.post(
+        'https://fcm.googleapis.com/fcm/send',
+        {
+          to: '/topics/all',
+          notification: {
+            title: 'New Jersey Added',
+            body: 'Click here to see it!',
+          },
+          data: {
+            type: 'newJersey',
+            jersey: newData,
+          },
+          priority: 'high',
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization:
+              'key=AAAANoUYm2M:APA91bFTfFaKVcj2pfTj_LjM727V7ws0VNOGVbuad1K9w6L8E6ZtBnd0g4f2mLbjoz-b_HySPzU2zkfPXc-caNI7Lj_if5z-bOPIEAN6_RbOxGDnQ8HU9ddesJQBbMh9HHNxG9tpPRIv',
+          },
+        }
+      )
+
+      console.log(data)
+    })
     .catch((error) => dispatchError(dispatch, ADD_JERSEY, error))
 }
 
